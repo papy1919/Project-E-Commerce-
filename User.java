@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class User implements Isearch {
@@ -246,10 +247,11 @@ public class User implements Isearch {
                 Scanner scanner = new Scanner(System.in);
                 int id = scanner.nextInt();
                 int i = 0;
-                for (Product product : cart) {
-                    i += 1;
+                Iterator<Product> iterator = cart.iterator();
+                while (iterator.hasNext()) {
+                    Product product = iterator.next();
                     if (product.getId() == id) {
-                        removeProduct(product);
+                        iterator.remove(); // Use iterator's remove method to safely remove
                     }
                 }
                 if (i == cart.size())
